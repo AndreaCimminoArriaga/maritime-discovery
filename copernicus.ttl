@@ -1,0 +1,80 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/dcmitype/> .
+@prefix th: <http://themes.org/maritime#> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+@prefix ex: <http://example.org/> .
+
+
+
+
+ex:catalog-copernicus
+  a dcat:Catalog ;
+  dcat:themeTaxonomy th:maritime-themes ;
+  dcterms:title "COPERNICUS"@en ;
+  rdfs:label "Copernicus Marine Data Store"@en ;
+  foaf:homepage <https://data.marine.copernicus.eu/products> ;
+  dcterms:language <http://id.loc.gov/vocabulary/iso639-1/en>  ;
+  dcat:dataset ex:gobanf, ex:dataset-copernicus-001, ex:dataset-copernicus-002 .
+
+ex:gobanf a dcat:DatasetSeries ;
+  dcterms:title "Global Ocean Biogeochemistry Analysis and Forecast"@en .
+  
+
+
+ex:dataset-copernicus-001
+  a dcat:Dataset ;
+  dcat:inSeries ex:gobanf ;
+  dcterms:spatial [
+  a dcterms:Location ;
+    locn:geometry """POLYGON ((7.207031 38.548165, 10.458984 39.095963, 9.84375 43.197167, 7.470703 42.811522, 7.207031 38.548165))"""^^geosparql:wktLiteral ;
+  ] ;
+  dcterms:title "Phytoplankton, daily"@en ;
+  dcterms:title "Fitoplancton, daily"@es ;
+  dcat:keyword "phytoplankton"@en, "fitoplancton"@es, th:microalgae ;
+  dcterms:issued "2022-1-01"^^xsd:date ;
+  dcterms:temporal [ 
+    a dcterms:PeriodOfTime ;
+    dcat:startDate "01-11-2021"^^xsd:date ; 
+    dcat:endDate   "28-01-2026"^^xsd:date ;
+  ];
+  dcat:temporalResolution "P1D"^^xsd:duration ;
+  dcterms:language <http://id.loc.gov/vocabulary/iso639-1/en> ;
+  dcat:distribution ex:dataset-copernicus-001-csv .
+
+
+ex:dataset-copernicus-002
+  a dcat:Dataset ;
+  dcat:inSeries ex:gobanf ;
+  dcterms:spatial [
+  a dcterms:Location ;
+    locn:geometry """POLYGON ((3.867188 42.682435, -8.085938 44.21371, -10.722656 42.55308, -10.546875 35.317366, 0.351563 36.738884, 3.867188 42.682435))"""^^geosparql:wktLiteral ;
+  ] ;
+  dcterms:title "Zooplankton carbon biomass, daily"@en ;
+  dcterms:title "Biomasa de carbono del zooplancton, diaria"@es ;
+  dcat:keyword "Zooplankton"@en, "biomass"@en, "zooplancton"@es, th:microalgae ;
+ 
+  dcterms:issued "2022-1-01"^^xsd:date ;
+  dcterms:temporal [ 
+    a dcterms:PeriodOfTime ;
+    dcat:startDate "29-11-2023"^^xsd:date ; 
+    dcat:endDate   "28-01-2026"^^xsd:date ;
+  ];
+  dcat:temporalResolution "P1D"^^xsd:duration ;
+  dcterms:language <http://id.loc.gov/vocabulary/iso639-1/en> ;
+  dcat:distribution ex:dataset-copernicus-002-csv .
+
+
+ex:dataset-copernicus-001-csv
+  a dcat:Distribution ;
+  dcat:downloadURL <https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_BGC_001_028/files?subdataset=cmems_mod_glo_bgc-pft_anfc_0.25deg_P1D-m_202311> .
+
+
+ex:dataset-copernicus-002-csv
+  a dcat:Distribution ;
+  dcat:downloadURL <https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_BGC_001_028/files?subdataset=cmems_mod_glo_bgc-plankton_anfc_0.25deg_P1D-m_202411&path=GLOBAL_ANALYSISFORECAST_BGC_001_028%2Fcmems_mod_glo_bgc-plankton_anfc_0.25deg_P1D-m_202411%2F> .

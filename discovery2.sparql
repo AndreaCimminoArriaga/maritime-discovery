@@ -1,0 +1,28 @@
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX th: <http://themes.org/maritime#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/dcmitype/>
+PREFIX ex: <http://example.org/>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+PREFIX opgs: <http://www.opengis.net/def/uom/OGC/1.0/>
+
+
+select ?datasetName1 ?datasetName2 ?geometry1 ?geometry2 ?intersectedPoints where { 
+    
+    ?dataset1 dcterms:title ?datasetName1 .
+    ?dataset1 dcterms:spatial ?location1 .
+    ?location1 locn:geometry ?geometry1 .
+    
+    ?dataset2 dcterms:title ?datasetName2 .
+    ?dataset2 dcterms:spatial ?location2 .
+    ?location2 locn:geometry ?geometry2 .
+    FILTER(?dataset1 != ?dataset2)
+    
+    BIND( geof:intersection(?geometry1, ?geometry2) AS ?intersectedPoints ) .
+  
+
+} 
+
+
+

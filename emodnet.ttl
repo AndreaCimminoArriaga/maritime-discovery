@@ -1,0 +1,54 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/dcmitype/> .
+@prefix th: <http://themes.org/maritime#> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+@prefix ex: <http://example.org/> .
+
+ex:catalog-emodnet
+  a dcat:Catalog ;
+  dcat:themeTaxonomy th:maritime-themes ;
+  dcterms:title "EMODnet"@en ;
+  rdfs:label "European Marine Observation and Data Network"@en ;
+  foaf:homepage <https://emodnet.ec.europa.eu/geonetwork/srv/spa/catalog.search#/home> ;
+  dcterms:language <http://id.loc.gov/vocabulary/iso639-1/en>  ;
+  dcat:dataset ex:dataset-emodnet-001 .
+
+ex:dataset-emodnet-001
+  a dcat:Dataset ;
+  dcterms:title "Human Activities"@en ;
+  dcterms:title "Actividades humanas"@es ;
+  dcterms:spatial [
+  a dcterms:Location ;
+    locn:geometry """POLYGON ((-10.898438 34.885931, 10.195313 38.272689, 16.171875 35.173808, 29.179688 35.173808, 27.070313 41.771312, 37.617188 44.590467, 41.132813 50.513427, 28.476563 56.752723, 28.828125 61.100789, 31.992188 63.548552, 42.539063 67.204032, 27.773438 71.965388, 11.25 69.657086, 2.460938 62.103883, 6.679688 56.944974, 3.867188 52.696361, -3.164063 59.355596, -9.84375 58.813742, -14.765625 51.618017, -10.898438 34.885931))"""^^geosparql:wktLiteral ;
+  ] ;
+  dcat:keyword th:microalgae ;
+  dcterms:issued "2011-12-05"^^xsd:date ;
+  dcterms:modified "2011-12-15"^^xsd:date ;
+  dcterms:temporal [ 
+    a dcterms:PeriodOfTime ;
+    dcat:startDate "1950-01-01"^^xsd:date ; 
+    dcat:endDate   "2016-12-31"^^xsd:date ;
+  ];
+  dcat:temporalResolution "P1D"^^xsd:duration ;
+  dcterms:publisher ex:cogea-srl, ex:ices ;
+  dcterms:language <http://id.loc.gov/vocabulary/iso639-1/en> ;
+  dcat:distribution ex:dataset-emodnet-001-csv .
+
+ex:cogea-srl a foaf:Organization ;
+  rdfs:label "Cogea srl"@en .
+
+ex:ices a foaf:Organization ;
+  rdfs:label "ICES"@en .
+
+ex:dataset-emodnet-001-csv
+  a dcat:Distribution ;
+  dcat:downloadURL <https://emodnet.ec.europa.eu/geonetwork/srv/api/records/d57fbdea-489e-4e11-9ff1-f0f706cfe783/formatters/zip?withRelated=false> ;
+  dcterms:title "TSV distribution Human Activities, Fisheries, Fishing Intensity"@en ;
+  dcat:mediaType <http://www.iana.org/assignments/media-types/text/tsv> ;
+  dcat:byteSize "8192"^^xsd:nonNegativeInteger .

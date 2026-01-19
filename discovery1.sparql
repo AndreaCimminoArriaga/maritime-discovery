@@ -1,0 +1,15 @@
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX th: <http://themes.org/maritime#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/dcmitype/>
+PREFIX ex: <http://example.org/>
+
+select ?catalogName ?datasetName ?downloadURL where { 
+	?dataset dcat:keyword th:microalgae .
+    ?dataset dcterms:title ?datasetName .
+    ?dataset dcat:distribution ?distribution .
+    ?distribution dcat:downloadURL ?downloadURL .
+        
+    ?catalog dcat:dataset ?dataset .
+    ?catalog dcterms:title ?catalogName .
+} 

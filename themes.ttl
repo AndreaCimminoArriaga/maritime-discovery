@@ -1,0 +1,26 @@
+@prefix th: <http://example.org/> .
+@prefix th: <http://themes.org/maritime#> .
+
+
+th:maritime-themes a skos:ConceptScheme ;
+  skos:prefLabel "A set of domains Blue themes to classify maritime-related datasets or services"@en ;
+  .
+
+th:carbon
+  a skos:Concept ;
+  skos:inScheme th:maritime-themes ;
+  skos:prefLabel "carbon"@en ;
+  .
+
+th:co2
+  a skos:Concept ;
+  skos:inScheme th:maritime-themes ;
+  skos:prefLabel "co2"@en ;
+  .
+
+th:microalgae
+  a skos:Concept ;
+  skos:inScheme th:maritime-themes ;
+  skos:prefLabel "microalgae"@en ;
+  .
+
